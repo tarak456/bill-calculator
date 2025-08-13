@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kirana Store Bill Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            text-align: center;
+            padding: 20px;
+        }
+    
+        h1 {
+            color: #333;
+            text-shadow: 1px 1px 2px #fff;
+        }
+    
+        label {
+            font-size: 18px;
+            font-weight: bold;
+        }
+    
+        input {
+            padding: 8px;
+            margin: 5px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+    
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            background-color: #ff7f50;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+    
+        button:hover {
+            background-color: #ff4500;
+        }
+    
+        #billList {
+            list-style-type: none;
+            padding: 0;
+        }
+    
+        #billList li {
+            background: white;
+            padding: 10px;
+            margin: 5px auto;
+            width: 50%;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    
+        h3 {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            width: 200px;
+            margin: 10px auto;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Kirana Store Bill Calculator 🛒</h1>
+    
+    <label>Item Name: </label>
+    <input type="text" id="itemName">
+    <br><br>
+
+    <label>Price per Item: </label>
+    <input type="number" id="price">
+    <br><br>
+
+    <label>Quantity: </label>
+    <input type="number" id="quantity">
+    <br><br>
+
+    <button onclick="addItem()">Add to Bill</button>
+    <button onclick="printBill()">Print Bill</button>
+
+    <h2>Bill Details:</h2>
+    <ul id="billList"></ul>
+    <h3>Total: ₹<span id="total">0</span></h3>
+
+    <script>
+        let totalAmount = 0;
+
+        function addItem() {
+            let name = document.getElementById("itemName").value;
+            let price = parseFloat(document.getElementById("price").value);
+            let quantity = parseInt(document.getElementById("quantity").value);
+
+            let total = price * quantity;
+            totalAmount += total;
+
+            let billList = document.getElementById("billList");
+            let li = document.createElement("li");
+            li.textContent = `${name} - ₹${price} × ${quantity} = ₹${total}`;
+            billList.appendChild(li);
+
+            document.getElementById("total").textContent = totalAmount;
+        }
+
+        function printBill() {
+            alert("Total Bill: ₹" + totalAmount);
+        }
+    </script>
+</body>
+</html>
